@@ -22,7 +22,7 @@
     |-- intention_recognition
     |   |-- Config.py   // 参数设置
     |   |-- DTHF_Kinnunen2018.py    // 基准算法,基于决策树的DTHF算法
-    |   |-- MDL_RM.py   // 本文算法,MDL-RM算法
+    |   |-- MDL_RM.py   // 本项目算法MDL-RM
     |   |-- RuleGO_Gruca2017.py   // 基准算法,基于频繁项集挖掘的RuleGO算法
     |-- samples   // 样本处理代码
     |   |-- generation    // 样本生成
