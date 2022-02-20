@@ -1,14 +1,20 @@
 # MDL-based Map Retrieval Intention Extraction by Greedy Algorithm considering Comprise Gain and Similarity
 import copy
+import os.path
 import random
+import sys
 import time
 from math import log2, gamma
 
-from MDL_RM.src.main.samples.input import OntologyUtil, Sample, Data
-from MDL_RM.src.main.util.RetrievalUtil import retrieve_docs_based_on_terms_covered_samples
+__dir__ = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.abspath(os.path.join(__dir__, "../../../../")))
 
+from MDL_RM.src.main.samples.input import OntologyUtil, Sample
+from MDL_RM.src.main.samples.input.Data import Data
+from MDL_RM.src.main.util.RetrievalUtil import retrieve_docs_based_on_terms_covered_samples
 from MDL_RM.src.main.intention_recognition import Config
 
+# print(sys.path)
 sub_intention_encoding_length = None
 similarity_Lin_cache = {}  # 概念间的最低公共祖先概念缓存
 
@@ -261,7 +267,7 @@ def is_intention_cover(intent_a, intent_b, ancestors, ontology_root):
         return False
 
 
-def get_merge_pair_statistics(merge_pair, rules,
+def get_merge_pair_statistics(data, merge_pair, rules,
                               uncovered_positive_samples_id, uncovered_negative_samples_id,
                               per_positive_sample_times, per_negative_sample_times,
                               data_encoding_method):
@@ -286,10 +292,10 @@ def get_merge_pair_statistics(merge_pair, rules,
             tmp_all_rules_covered_positive_negative_nums.append(tmp_rule[3])
 
     tmp_merged_rule_covered_positive_samples_id = \
-        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, Data.all_relevance_concepts_retrieved_docs,
+        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, data.all_relevance_concepts_retrieved_docs,
                                                      "positive")
     tmp_merged_rule_covered_negative_samples_id = \
-        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, Data.all_relevance_concepts_retrieved_docs,
+        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, data.all_relevance_concepts_retrieved_docs,
                                                      "negative")
 
     tmp_merged_rule_retrieved_uncovered_positive_samples_id = \
@@ -434,7 +440,7 @@ def get_rules_encoding_length_without_order_constraint(rules, positive_samples, 
 #               average_encoding_length]
 #   encoding_length = [total_encoding_length, intention_encoding_length, sample_encoding_length]
 # )
-def get_merge_pair_statistics_without_order_constraint(merge_pair, rules, positive_samples, negative_samples,
+def get_merge_pair_statistics_without_order_constraint(data, merge_pair, rules, positive_samples, negative_samples,
                                                        per_positive_sample_times, per_negative_sample_times):
     global time_use_retrieve_docs
 
@@ -450,10 +456,10 @@ def get_merge_pair_statistics_without_order_constraint(merge_pair, rules, positi
     #                                                             Data.Ontologies, Data.Ontology_Root)
     # 样本检索优化后
     tmp_merged_rule_covered_positive_samples_id = \
-        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, Data.all_relevance_concepts_retrieved_docs,
+        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, data.all_relevance_concepts_retrieved_docs,
                                                      "positive")
     tmp_merged_rule_covered_negative_samples_id = \
-        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, Data.all_relevance_concepts_retrieved_docs,
+        retrieve_docs_based_on_terms_covered_samples(tmp_merged_rule, data.all_relevance_concepts_retrieved_docs,
                                                      "negative")
     time02 = time.time()
     time_use_retrieve_docs += time02 - time01
@@ -495,13 +501,13 @@ def get_merge_pair_similarity(merge_pair, dimensions_weight):
     if tmp_merge_type == "SS":
         similarity_of_merge_pair = similarity_of_samples(tmp_merge_item_a, tmp_merge_item_b, Data.Ontologies,
                                                          Data.direct_Ancestor, Data.Ontology_Root,
-                                                         Sample.concept_information_content, dimensions_weight)
+                                                         Data.concept_information_content, dimensions_weight)
     elif tmp_merge_type == "RS":
         tmp_sub_intention = tmp_merge_item_a
         similarity_of_merge_pair = similarity_of_sub_intention_and_sample(tmp_sub_intention, tmp_merge_item_b,
                                                                           Data.Ontologies,
                                                                           Data.direct_Ancestor, Data.Ontology_Root,
-                                                                          Sample.concept_information_content,
+                                                                          Data.concept_information_content,
                                                                           dimensions_weight)
     elif tmp_merge_type == "RR":
         tmp_sub_intention_a = tmp_merge_item_a
@@ -509,7 +515,7 @@ def get_merge_pair_similarity(merge_pair, dimensions_weight):
         similarity_of_merge_pair = similarity_of_sub_intentions(tmp_sub_intention_a, tmp_sub_intention_b,
                                                                 Data.Ontologies,
                                                                 Data.direct_Ancestor, Data.Ontology_Root,
-                                                                Sample.concept_information_content,
+                                                                Data.concept_information_content,
                                                                 dimensions_weight)
     else:
         raise Exception("tmp_merge_type must be one of [SS , RS, RR]")
@@ -555,9 +561,9 @@ def init_for_intention_extraction(samples, data_encoding_method):
     # re-statistics Data
     new_samples = {"relevance": positive_samples, "irrelevance": negative_samples}
     # time_01 = time.time()
-    Data.preprocess(new_samples)
+    data = Data(new_samples)
     # time_02 = time.time()
-    return (positive_samples, negative_samples, per_positive_sample_times,
+    return (data, positive_samples, negative_samples, per_positive_sample_times,
             per_negative_sample_times, uncovered_positive_samples_id,
             uncovered_negative_samples_id, init_encoding_length)
 
@@ -575,10 +581,9 @@ def init_for_intention_extraction(samples, data_encoding_method):
 def get_intention_by_method1(test_samples, data_encoding_method, rule_covered_positive_sample_rate_threshold):
     global similarity_Lin_cache
     similarity_Lin_cache = {}
-    positive_samples, negative_samples, per_positive_sample_times, \
+    data, positive_samples, negative_samples, per_positive_sample_times, \
     per_negative_sample_times, uncovered_positive_samples_id, \
-    uncovered_negative_samples_id, encoding_length = init_for_intention_extraction(test_samples,
-                                                                                   data_encoding_method)
+    uncovered_negative_samples_id, encoding_length = init_for_intention_extraction(test_samples, data_encoding_method)
 
     min_encoding_length = encoding_length[0]
     init_min_encoding_length = copy.deepcopy(min_encoding_length)
@@ -595,7 +600,7 @@ def get_intention_by_method1(test_samples, data_encoding_method, rule_covered_po
                     continue
                 tmp_merged_rule = merge_samples(tmp_sample_a, tmp_sample_b, Data.Ontologies, Data.direct_Ancestor,
                                                 Data.Ontology_Root,
-                                                Sample.concept_information_content)
+                                                Data.concept_information_content)
                 merge_pairs.append([tmp_sample_a, tmp_sample_b, tmp_merged_rule, "SS"])
 
         # second, the rules and uncovered positive samples
@@ -606,7 +611,7 @@ def get_intention_by_method1(test_samples, data_encoding_method, rule_covered_po
                 tmp_merged_rule = merge_sub_intention_and_sample(tmp_sub_intention, tmp_sample,
                                                                  Data.Ontologies, Data.direct_Ancestor,
                                                                  Data.Ontology_Root,
-                                                                 Sample.concept_information_content)
+                                                                 Data.concept_information_content)
                 merge_pairs.append([tmp_rule, tmp_sample, tmp_merged_rule, "RS"])
         visited_rule_id_pairs = set()
         for tmp_rule_id_a in rules:
@@ -627,7 +632,7 @@ def get_intention_by_method1(test_samples, data_encoding_method, rule_covered_po
 
         for tmp_merge_pair in merge_pairs:
             tmp_merged_rule_statistics = \
-                get_merge_pair_statistics_without_order_constraint(tmp_merge_pair, rules, positive_samples,
+                get_merge_pair_statistics_without_order_constraint(data, tmp_merge_pair, rules, positive_samples,
                                                                    negative_samples,
                                                                    per_positive_sample_times,
                                                                    per_negative_sample_times)
@@ -694,6 +699,29 @@ def result_to_intention(method_result):
     return rules_to_intention(rules)
 
 
+def rules_to_intention_frontend(rules):
+    intention = []
+    intention_result = {'confidence': 0, 'intention': intention}
+    if len(rules) == 0:
+        tmp_sub_intention = {'confidence': 0}
+        for tmp_dim in Data.Ontology_Root:
+            tmp_sub_intention[tmp_dim] = Data.Ontology_Root[tmp_dim]
+        intention.append(tmp_sub_intention)
+    else:
+        for tmp_rule_id in rules:
+            tmp_rule = rules[tmp_rule_id][0]
+            tmp_rule['confidence'] = 0
+            intention.append(tmp_rule)
+    return intention_result
+
+
+# params format
+#   method_result = (rules, min_encoding_length, init_min_encoding_length)
+def result_to_intention_frontend(method_result):
+    rules, min_encoding_length, init_min_encoding_length, method_log = method_result
+    return rules_to_intention_frontend(rules)
+
+
 # filter the rules and method log with rule_covered_positive_sample_rate_threshold
 def filter_rules(rules, rule_covered_positive_sample_rate_threshold,
                  positive_samples, negative_samples,
@@ -756,7 +784,7 @@ def get_intention_by_method6(samples, data_encoding_method, random_merge_number,
     time00 = time.time()
 
     # 初始化
-    positive_samples, negative_samples, per_positive_sample_times, \
+    data, positive_samples, negative_samples, per_positive_sample_times, \
     per_negative_sample_times, uncovered_positive_samples_id, \
     uncovered_negative_samples_id, encoding_length = init_for_intention_extraction(samples, data_encoding_method)
     min_encoding_length = encoding_length[0]
@@ -812,21 +840,21 @@ def get_intention_by_method6(samples, data_encoding_method, random_merge_number,
                     tmp_sample_b = positive_samples[selected_item_b[1]]
                     tmp_merged_rule = merge_samples(tmp_sample_a, tmp_sample_b, Data.Ontologies, Data.direct_Ancestor,
                                                     Data.Ontology_Root,
-                                                    Sample.concept_information_content)
+                                                    Data.concept_information_content)
                     tmp_merge_pair = [tmp_sample_a, tmp_sample_b, tmp_merged_rule, "SS"]
                 elif selected_item_a[0] == "S" and selected_item_b[0] == "R":
                     tmp_sub_intention = tmp_rules.rules[selected_item_b[1]][0]
                     tmp_sample = positive_samples[selected_item_a[1]]
                     tmp_merged_rule = merge_sub_intention_and_sample(tmp_sub_intention, tmp_sample, Data.Ontologies,
                                                                      Data.direct_Ancestor, Data.Ontology_Root,
-                                                                     Sample.concept_information_content)
+                                                                     Data.concept_information_content)
                     tmp_merge_pair = [tmp_sub_intention, tmp_sample, tmp_merged_rule, "RS"]
                 elif selected_item_a[0] == "R" and selected_item_b[0] == "S":
                     tmp_sub_intention = tmp_rules.rules[selected_item_a[1]][0]
                     tmp_sample = positive_samples[selected_item_b[1]]
                     tmp_merged_rule = merge_sub_intention_and_sample(tmp_sub_intention, tmp_sample, Data.Ontologies,
                                                                      Data.direct_Ancestor, Data.Ontology_Root,
-                                                                     Sample.concept_information_content)
+                                                                     Data.concept_information_content)
                     tmp_merge_pair = [tmp_sub_intention, tmp_sample, tmp_merged_rule, "RS"]
                 elif selected_item_a[0] == "R" and selected_item_b[0] == "R":
                     tmp_sub_intention_a = tmp_rules.rules[selected_item_a[1]][0]
@@ -838,7 +866,7 @@ def get_intention_by_method6(samples, data_encoding_method, random_merge_number,
                 time03 = time.time()
 
                 tmp_merged_rule_statistics = \
-                    get_merge_pair_statistics_without_order_constraint(tmp_merge_pair, tmp_rules.rules,
+                    get_merge_pair_statistics_without_order_constraint(data, tmp_merge_pair, tmp_rules.rules,
                                                                        positive_samples,
                                                                        negative_samples,
                                                                        per_positive_sample_times,

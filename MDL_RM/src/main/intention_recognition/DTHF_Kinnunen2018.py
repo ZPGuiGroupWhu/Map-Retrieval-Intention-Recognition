@@ -2,8 +2,9 @@
 # [1] Kinnunen N . Decision tree learning with hierarchical features.  2018.
 
 
-from MDL_RM.src.main.intention_recognition import Config, MDL_RM
-from MDL_RM.src.main.samples.input import OntologyUtil, Data
+from MDL_RM.src.main.intention_recognition import Config, Run_MDL_RM
+from MDL_RM.src.main.samples.input import OntologyUtil
+from MDL_RM.src.main.samples.input.Data import Data
 from math import log2, inf
 import copy
 
@@ -262,7 +263,7 @@ def DT_to_intention(node, ancestors, ontology_root):
         for j, other_tmp_sub_intention in enumerate(intention):
             if i == j:
                 continue
-            if MDL_RM.is_intention_cover(other_tmp_sub_intention, tmp_sub_intention, ancestors, ontology_root):
+            if Run_MDL_RM.is_intention_cover(other_tmp_sub_intention, tmp_sub_intention, ancestors, ontology_root):
                 keep = False
                 break
         if keep:
@@ -279,7 +280,8 @@ def DTHF(positive_samples, negative_samples, direct_ancestors, ancestors, ontolo
     transformed_positive_samples = transform_data(positive_samples, direct_ancestors, ontology_root)
     transformed_negative_samples = transform_data(negative_samples, direct_ancestors, ontology_root)
     rule_root = {}
-    for tmp_dim in Data.dimensions:
+    dimensions = list(positive_samples[0].keys())
+    for tmp_dim in dimensions:
         rule_root[tmp_dim] = []
     root_node = Node(rule_root, transformed_positive_samples, transformed_negative_samples)
     grow(root_node)

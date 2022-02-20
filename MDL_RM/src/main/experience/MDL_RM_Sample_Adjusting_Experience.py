@@ -6,8 +6,9 @@ import time
 import multiprocessing
 
 from MDL_RM.src.main import Intention
-from MDL_RM.src.main.samples.input import Sample, Data
-from MDL_RM.src.main.intention_recognition import Config, MDL_RM
+from MDL_RM.src.main.samples.input import Sample
+from MDL_RM.src.main.samples.input.Data import Data
+from MDL_RM.src.main.intention_recognition import Config, Run_MDL_RM
 from MDL_RM.src.main.experience import EvaluationIndex
 from MDL_RM.src.main.util.FileUtil import save_as_json, load_json
 
@@ -68,13 +69,12 @@ def experience_get_specific_samples_result(part_name, sample_paths, adjust_type)
                 Config.adjust_sample_ratio = tmp_adjust
 
                 # load sample data
-                Sample.load_sample(tmp_sample_path)
-                Data.init(Sample)
-                real_intention = Sample.real_intention
-                samples = Data.docs
+                docs, real_intention = Sample.load_sample_from_file(tmp_sample_path)
+                data = Data(docs, real_intention)
+                samples = data.docs
                 ontology_root = Data.Ontology_Root
                 direct_ancestors = Data.direct_Ancestor
-                information_content = Sample.concept_information_content
+                information_content = data.concept_information_content
                 for tmp_method in methods:
                     tmp_run_num += 1
                     tmp_record_key = (tmp_sample_name, adjust_type, tmp_value, tmp_adjust, tmp_method)
@@ -95,17 +95,17 @@ def experience_get_specific_samples_result(part_name, sample_paths, adjust_type)
                     all_time_use_others = []
                     for i in range(run_time):
                         intention_result = None
-                        MDL_RM.init_time_use()
+                        Run_MDL_RM.init_time_use()
                         time01 = time.time()
                         method_result = None
                         if tmp_method == "MDL_RM_r":
-                            method_result = MDL_RM.get_intention_by_MDL_RM_r(samples, Config.MDL_RM_random_merge_number,
-                                                                             tmp_threshold)
-                            intention_result = MDL_RM.result_to_intention(method_result)
+                            method_result = Run_MDL_RM.get_intention_by_MDL_RM_r(samples,
+                                                                                 Config.MDL_RM_random_merge_number,
+                                                                                 tmp_threshold)
+                            intention_result = Run_MDL_RM.result_to_intention(method_result)
                         elif tmp_method == "MDL_RM_g":
-                            method_result = MDL_RM.get_intention_by_MDL_RM_g(samples,
-                                                                             tmp_threshold)
-                            intention_result = MDL_RM.result_to_intention(method_result)
+                            method_result = Run_MDL_RM.get_intention_by_MDL_RM_g(samples, tmp_threshold)
+                            intention_result = Run_MDL_RM.result_to_intention(method_result)
                         time02 = time.time()
                         time_use = method_result[-1]["time_use"]
                         time_use_others = time_use["time_use_others"]

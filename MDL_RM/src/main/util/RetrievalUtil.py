@@ -110,5 +110,5 @@ if __name__ == "__main__":
                     [{'d1': 'C26', 'd2': None}, {'d2': None, 'd1': 'C27'}]]
     for test_intent in test_intents:
         print(get_intent_key(test_intent))
-        print(((('d1', 'C26'), ('d2', None)), (('d1', 'C27'), ('d2', None))) == get_intent_key(test_intent))
+        print("[[('d1', 'C26'), ('d2', None)], [('d1', 'C27'), ('d2', None)]]" == get_intent_key(test_intent))
     print("Aye")

@@ -1,7 +1,8 @@
 import time
 
 from MDL_RM.src.main.experience import EvaluationIndex
-from MDL_RM.src.main.samples.input import OntologyUtil, Sample, Data
+from MDL_RM.src.main.samples.input import OntologyUtil, Sample
+from MDL_RM.src.main.samples.input.Data import Data
 from MDL_RM.src.main.intention_recognition import RuleGO_Gruca2017
 
 
@@ -9,20 +10,20 @@ def _test_rule_filtering():
     # load samples
     scene = "11"
     test_sample_path = "./../../../resources/samples/scenes_v4_5/Scene" + scene + "/noise_samples_S0p1_L1.json"
-    Sample.load_sample(test_sample_path)
-    Data.init(Sample)
-    test_real_intention = Sample.real_intention
-    test_samples = Data.docs
+    docs, real_intention = Sample.load_sample_from_file(test_sample_path)
+    data = Data(docs)
+    test_real_intention = real_intention
+    test_samples = docs
     test_positive_samples = test_samples["relevance"]
     test_negative_samples = test_samples["irrelevance"]
     # terms, positive_samples, negative_samples, terms_covered_samples, ancestors, ontologies
-    test_terms = Data.all_relevance_concepts
-    test_terms_covered_samples = Data.all_relevance_concepts_retrieved_docs
+    test_terms = data.all_relevance_concepts
+    test_terms_covered_samples = data.all_relevance_concepts_retrieved_docs
     test_ancestors = Data.Ancestor
     test_ontologies = Data.Ontologies
     test_ontology_root = Data.Ontology_Root
     test_direct_ancestors = Data.direct_Ancestor
-    test_information_content = Sample.concept_information_content
+    test_information_content = Data.concept_information_content
     time0 = time.time()
     test_max_depths = {}
     for tmp_dim in Data.dimensions:
@@ -72,14 +73,14 @@ def _test_rule_filtering():
 def check_bugs():
     test_scene = "151"
     test_sample_path = "./../../../resources/samples/scenes_v4_5/Scene" + test_scene + "/noise_samples_S0p2_L0p8.json"
-    Sample.load_sample(test_sample_path)
-    Data.init(Sample)
-    test_samples = Data.docs
+    docs, real_intention = Sample.load_sample_from_file(test_sample_path)
+    data = Data(docs)
+    test_samples = docs
     test_positive_samples = test_samples["relevance"]
-    test_terms = Data.all_relevance_concepts
+    test_terms = data.all_relevance_concepts
     print(test_terms)
     print(len([x for y in list(test_terms.values()) for x in y]))
-    test_terms_covered_samples = Data.all_relevance_concepts_retrieved_docs
+    test_terms_covered_samples = data.all_relevance_concepts_retrieved_docs
     # test_ancestors = Data.Ancestor
     test_ontologies = Data.Ontologies
     test_ontology_root = Data.Ontology_Root
@@ -113,6 +114,6 @@ def check_bugs():
 
 
 if __name__ == "__main__":
-    # _test_rule_filtering()
+    _test_rule_filtering()
     check_bugs()
     print("Aye")

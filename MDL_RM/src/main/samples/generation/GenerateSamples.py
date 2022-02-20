@@ -5,7 +5,7 @@ from MDL_RM.src.main.util.RetrievalUtil import retrieve_docs, get_intent_key
 from MDL_RM.src.main.samples.input import DimensionValues
 from MDL_RM.src.main.samples.generation import ConceptIdTransform
 from MDL_RM.src.main.util.FileUtil import save_as_json, load_csv, load_json
-from MDL_RM.src.main.intention_recognition import MDL_RM
+from MDL_RM.src.main.intention_recognition import Run_MDL_RM
 import os.path
 import random
 import copy
@@ -178,7 +178,7 @@ def get_positive_negative_samples_by_intention(intention, all_samples, ontologie
             tmp_sub_intention_negative_samples_similarity = []
             for tmp_negative_sample_index in tmp_sub_intention_negative_samples_index:
                 tmp_negative_sample = samples[tmp_negative_sample_index]
-                tmp_similarity = MDL_RM.similarity_of_sub_intention_and_sample(tmp_sub_intention, tmp_negative_sample,
+                tmp_similarity = Run_MDL_RM.similarity_of_sub_intention_and_sample(tmp_sub_intention, tmp_negative_sample,
                                                                                ontologies, direct_ancestors,
                                                                                ontology_root,
                                                                                concept_information_content_yuan2013s,

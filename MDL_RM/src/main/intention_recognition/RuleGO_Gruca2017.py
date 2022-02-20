@@ -2,8 +2,9 @@
 # [1] Gruca A ,  Sikora M . Data- and expert-driven rule induction and filtering framework for functional
 # interpretation and description of gene sets[J]. Journal of Biomedical Semantics, 2017, 8(1).
 
-from MDL_RM.src.main.intention_recognition import Config, MDL_RM
-from MDL_RM.src.main.samples.input import OntologyUtil, Data
+from MDL_RM.src.main.intention_recognition import Config, Run_MDL_RM
+from MDL_RM.src.main.samples.input import OntologyUtil
+from MDL_RM.src.main.samples.input.Data import Data
 
 from scipy.special import comb
 import copy
@@ -333,7 +334,7 @@ def result_rules_to_intention(result_rules, ancestors, ontology_root):
         for j, other_tmp_sub_intention in enumerate(intention):
             if i == j:
                 continue
-            if MDL_RM.is_intention_cover(other_tmp_sub_intention, tmp_sub_intention, ancestors, ontology_root):
+            if Run_MDL_RM.is_intention_cover(other_tmp_sub_intention, tmp_sub_intention, ancestors, ontology_root):
                 keep = False
                 break
         if keep:
@@ -349,7 +350,8 @@ def result_rules_to_intention(result_rules, ancestors, ontology_root):
 def RuleGo(terms, positive_samples, negative_samples, terms_covered_samples,
            direct_ancestors, ancestors, ontologies, ontology_root):
     max_depths = {}
-    for tmp_dim in Data.dimensions:
+    dimensions = list(positive_samples[0].keys())
+    for tmp_dim in dimensions:
         max_depths[tmp_dim] = OntologyUtil.get_max_depth(direct_ancestors[tmp_dim],
                                                          ontologies[tmp_dim], ontology_root[tmp_dim])
     # 获取候选规则

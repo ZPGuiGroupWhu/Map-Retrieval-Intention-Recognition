@@ -4,8 +4,11 @@ import os
 from MDL_RM.src.main.util.FileUtil import load_json
 
 id_concept_dict = {}
-concept_id_dict_path = os.getcwd().split("MDL_RM")[0] + "MDL_RM/resources/samples/concept_id_dict.json"
-
+# concept_id_dict_path = os.getcwd().split("MDL_RM")[0] + "MDL_RM/resources/samples/concept_id_dict.json"
+__dir__ = os.path.dirname(os.path.abspath(__file__))
+concept_id_dict_path = os.path.join(os.path.abspath(os.path.join(__dir__, "../../../../")),
+                                    "resources/samples/concept_id_dict.json")
+# print(concept_id_dict_path)
 concept_id_dict = load_json(concept_id_dict_path)
 for _tmp_concept in concept_id_dict:
     _tmp_id = concept_id_dict[_tmp_concept]

@@ -11,7 +11,8 @@ import time
 import multiprocessing
 
 from MDL_RM.src.main import Intention
-from MDL_RM.src.main.samples.input import Sample, Data
+from MDL_RM.src.main.samples.input import Sample
+from MDL_RM.src.main.samples.input.Data import Data
 from MDL_RM.src.main.intention_recognition import Config, RuleGO_Gruca2017
 from MDL_RM.src.main.experience import EvaluationIndex
 from MDL_RM.src.main.util.FileUtil import save_as_json, load_json
@@ -83,19 +84,18 @@ def experience_get_specific_samples_result(part_name, sample_paths):
                                                        "noise_samples" + tmp_feedback_noise_rate_str
                                                        + tmp_label_noise_rate_str + ".json")
                 # load sample data
-                Sample.load_sample(tmp_sample_path)
-                Data.init(Sample)
-                real_intention = Sample.real_intention
-                samples = Data.docs
+                docs, real_intention = Sample.load_sample_from_file(tmp_sample_path)
+                data = Data(docs, real_intention)
+                samples = data.docs
                 positive_samples = samples["relevance"]
                 negative_samples = samples["irrelevance"]
                 ancestors = Data.Ancestor
                 ontologies = Data.Ontologies
                 ontology_root = Data.Ontology_Root
                 direct_ancestors = Data.direct_Ancestor
-                information_content = Sample.concept_information_content
-                terms = Data.all_relevance_concepts
-                terms_covered_samples = Data.all_relevance_concepts_retrieved_docs
+                information_content = data.concept_information_content
+                terms = data.all_relevance_concepts
+                terms_covered_samples = data.all_relevance_concepts_retrieved_docs
                 for tmp_method in methods:
                     for tmp_min_support in RuleGO_min_support_values:
                         for tmp_use_similarity_criteria in RuleGO_use_similarity_criteria:

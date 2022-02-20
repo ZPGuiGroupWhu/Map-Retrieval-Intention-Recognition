@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # 测试utf-8编码
     # save_as_csv([['\xe3', 2]], r"D:\project\wms search\03进展\意图识别\06代码\Intention\result\file\test.csv")
     dic1 = {'标题列1': ['张三', '李四', '34'],
-            '标题列2': [80, 90]
+            '标题列2': [80, 90, 20]
             }
     test_path = "./test.xlsx"
     save_as_excel(dic1, test_path)

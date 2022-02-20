@@ -1,7 +1,8 @@
 import time
 
 from MDL_RM.src.main.experience import EvaluationIndex
-from MDL_RM.src.main.samples.input import Sample, Data
+from MDL_RM.src.main.samples.input import Sample
+from MDL_RM.src.main.samples.input.Data import Data
 from MDL_RM.src.main.intention_recognition import DTHF_Kinnunen2018
 
 
@@ -9,17 +10,16 @@ def _test_get_optimal_split_rule():
     # load samples
     test_scene = "11"
     test_sample_path = "./../../../resources/samples/scenes_v4_5/Scene" + test_scene + "/final_samples.json"
-    Sample.load_sample(test_sample_path)
-    Data.init(Sample)
-    test_real_intention = Sample.real_intention
-    test_samples = Data.docs
+    docs, real_intention = Sample.load_sample_from_file(test_sample_path)
+    test_real_intention = real_intention
+    test_samples = docs
     test_positive_samples = test_samples["relevance"]
     test_negative_samples = test_samples["irrelevance"]
     test_ancestors = Data.Ancestor
     test_ontologies = Data.Ontologies
     test_ontology_root = Data.Ontology_Root
     test_direct_ancestors = Data.direct_Ancestor
-    test_information_content = Sample.concept_information_content
+    test_information_content = Data.concept_information_content
 
     transformed_positive_samples = DTHF_Kinnunen2018.transform_data(test_positive_samples, Data.direct_Ancestor,
                                                                     Data.Ontology_Root)

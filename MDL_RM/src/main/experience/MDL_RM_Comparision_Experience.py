@@ -9,8 +9,9 @@ import time
 import multiprocessing
 
 from MDL_RM.src.main import Intention
-from MDL_RM.src.main.samples.input import Sample, Data
-from MDL_RM.src.main.intention_recognition import Config, DTHF_Kinnunen2018, MDL_RM, RuleGO_Gruca2017
+from MDL_RM.src.main.samples.input import Sample
+from MDL_RM.src.main.samples.input.Data import Data
+from MDL_RM.src.main.intention_recognition import Config, DTHF_Kinnunen2018, Run_MDL_RM, RuleGO_Gruca2017
 from MDL_RM.src.main.experience import EvaluationIndex
 from MDL_RM.src.main.util.FileUtil import save_as_json, load_json
 
@@ -84,19 +85,18 @@ def experience_get_specific_samples_result(part_name, sample_paths):
                                                        "noise_samples" + tmp_sample_level_noise_rate_str
                                                        + tmp_label_level_noise_rate_str + ".json")
                 # load sample data
-                Sample.load_sample(tmp_sample_path)
-                Data.init(Sample)
-                real_intention = Sample.real_intention
-                samples = Data.docs
+                docs, real_intention = Sample.load_sample_from_file(tmp_sample_path)
+                data = Data(docs, real_intention)
+                samples = data.docs
                 positive_samples = samples["relevance"]
                 negative_samples = samples["irrelevance"]
                 ancestors = Data.Ancestor
                 ontologies = Data.Ontologies
                 ontology_root = Data.Ontology_Root
                 direct_ancestors = Data.direct_Ancestor
-                information_content = Sample.concept_information_content
-                terms = Data.all_relevance_concepts
-                terms_covered_samples = Data.all_relevance_concepts_retrieved_docs
+                information_content = data.concept_information_content
+                terms = data.all_relevance_concepts
+                terms_covered_samples = data.all_relevance_concepts_retrieved_docs
                 for tmp_method in methods:
                     tmp_run_num += 1
                     tmp_record_key = (
@@ -117,9 +117,10 @@ def experience_get_specific_samples_result(part_name, sample_paths):
                         time01 = time.time()
                         intention_result = None
                         if tmp_method == "MDL_RM_r":
-                            method_result = MDL_RM.get_intention_by_MDL_RM_r(samples, Config.MDL_RM_random_merge_number,
-                                                                             tmp_threshold)
-                            intention_result = MDL_RM.result_to_intention(method_result)
+                            method_result = Run_MDL_RM.get_intention_by_MDL_RM_r(samples,
+                                                                                 Config.MDL_RM_random_merge_number,
+                                                                                 tmp_threshold)
+                            intention_result = Run_MDL_RM.result_to_intention(method_result)
                         elif tmp_method == "DTHF":
                             intention_result = DTHF_Kinnunen2018.DTHF(positive_samples, negative_samples,
                                                                       direct_ancestors, ancestors, ontology_root)
