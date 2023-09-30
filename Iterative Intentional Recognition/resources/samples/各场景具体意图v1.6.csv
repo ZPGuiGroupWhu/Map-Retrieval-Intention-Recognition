@@ -1,0 +1,38 @@
+﻿场景1,Biodiversity,None,None,None
+场景2,None,ExtrusiveRock,None,None
+场景3,None,Animal,None,None
+场景4,None,None,Colorado,None
+场景5,None,None,Florida,None
+场景6,None,None,None,Choloplethic Method
+场景7,Biodiversity,None,Colorado,None
+场景8,Geology,None,None,Area Method
+场景9,Geology,ExtrusiveRock,None,Quality Base Method
+场景10,None,Animal,Brazil,Area Method
+场景11,Geology,VolcanicRock,North America,Point Symbol Method
+场景12,Biodiversity,Animal,United States,Quality Base Method
+场景13,None,Temperature,None,None
+,None,ExtrusiveRock,None,None
+场景14,None,None,United States,None
+,None,None,None,Line Symbol Method
+场景15,None,Rock,None,None
+,None,None,Florida,None
+场景16,Geology,None,None,None
+,None,None,None,Point Symbol Method
+场景17,Climate,None,None,None
+,Geology,None,None,None
+,Biodiversity,None,None,None
+场景18,Geology,None,None,None
+,None,Animal,None,None
+,None,None,South America,None
+场景19,Geology,VolcanicRock,None,None
+,Biodiversity,Animal,None,None
+场景20,Geology,Rock,None,None
+,None,None,Brazil,Point Symbol Method
+场景21,Climate,Temperature,None,Choloplethic Method
+,Climate,Temperature,None,Line Symbol Method
+场景22,Biodiversity,Animal,United States,None
+,Climate,Temperature,None,None
+场景23,Geology,Rock,None,Point Symbol Method
+,Climate,Temperature,United States,None
+场景24,Biodiversity,Animal,United States,Area Method
+,Geology,ExtrusiveRock,South America,Quality Base Method
