@@ -3,5 +3,5 @@
 * ### 项目介绍
   本项目面向地理信息资源检索，基于相关反馈数据识别用户检索意图，旨在以意图驱动的方式提高检索精度，辅助资源的发现与利用。
 * ### 目前该项目包含以下算法：
-  * 1. 基于最小描述长度(Minimum Description Length Principle)准则与随机合并(Random Merging)策略的意图识别算法**MDL-RM**。
-  * 2. 基于引导式迭代反馈的地图检索意图更新算法。
+  1. 基于最小描述长度(Minimum Description Length Principle)准则与随机合并(Random Merging)策略的意图识别算法**MDL-RM**。
+  2. 基于引导式迭代反馈的地图检索意图更新算法。
