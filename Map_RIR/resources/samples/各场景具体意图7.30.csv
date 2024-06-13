@@ -1,0 +1,306 @@
+Scene11,,None,None,None,None
+Scene12,,None,None,None,None
+Scene13,,None,None,None,None
+Scene361,,None,None,None,None
+Scene362,,None,None,None,None
+Scene363,,None,None,None,None
+Scene364,,None,None,None,None
+Scene365,,None,None,None,None
+Scene366,,None,None,None,None
+Scene367,,None,None,None,None
+Scene368,,None,None,None,None
+Scene369,,None,None,None,None
+Scene370,,None,None,None,None
+Scene371,,None,None,None,None
+Scene372,,None,None,None,None
+Scene373,,None,None,None,None
+Scene374,,None,None,None,None
+Scene375,,None,None,None,None
+Scene376,,None,None,None,None
+Scene377,,None,None,None,None
+Scene378,,None,None,None,None
+Scene379,,None,None,None,None
+Scene380,,None,None,None,None
+Scene381,,None,None,None,None
+Scene382,,None,None,None,None
+Scene383,,None,None,None,None
+Scene384,,None,None,None,None
+Scene385,,None,None,None,None
+Scene386,,None,None,None,None
+Scene387,,None,None,None,None
+Scene21,,Water,None,None,None
+Scene22,,Geology,None,None,None
+Scene23,,Biodiversity,None,None,None
+Scene388,,Energy,None,None,None
+Scene389,,Weather,None,None,None
+Scene390,,Agriculture,None,None,None
+Scene391,,Climate,None,None,None
+Scene392,,Health,None,None,None
+Scene31,,None,TransitionMetal,None,None
+Scene32,,None,ExtrusiveRock,None,None
+Scene33,,None,Temperature,None,None
+Scene393,,None,VolcanicRock,None,None
+Scene394,,None,Wave,None,None
+Scene395,,None,Wind,None,None
+Scene396,,None,Rock,None,None
+Scene397,,None,Animal,None,None
+Scene41,,None,None,North America,None
+Scene42,,None,None,Iowa,None
+Scene43,,None,None,United States,None
+Scene398,,None,None,South America,None
+Scene399,,None,None,Alaska,None
+Scene400,,None,None,Florida,None
+Scene401,,None,None,Brazil,None
+Scene51,,None,None,None,Area Method
+Scene52,,None,None,None,Quality Base Method
+Scene53,,None,None,None,Point Symbol Method
+Scene402,,None,None,None,No Method
+Scene403,,None,None,None,Others
+Scene404,,None,None,None,Choloplethic Method
+Scene405,,None,None,None,Line Symbol Method
+Scene61,,Geology,VolcanicRock,None,None
+Scene62,,Energy,Wave,None,None
+Scene63,,Weather,Wind,None,None
+Scene71,,Agriculture,None,Iowa,None
+Scene72,,Biodiversity,None,United States,None
+Scene73,,Weather,None,South America,None
+Scene81,,Geology,None,None,Area Method
+Scene82,,Energy,None,None,Point Symbol Method
+Scene83,,Weather,None,None,No Method
+Scene91,,None,Rock,Alaska,None
+Scene92,,None,Temperature,South America,None
+Scene93,,None,Animal,United States,None
+Scene101,,None,TransitionMetal,None,Area Method
+Scene102,,None,ExtrusiveRock,None,Others
+Scene103,,None,Temperature,None,Quality Base Method
+Scene111,,None,None,Alaska,Area Method
+Scene112,,None,None,South America,Others
+Scene113,,None,None,United States,No Method
+Scene121,,Geology,Rock,Alaska,None
+Scene122,,Biodiversity,Animal,United States,None
+Scene123,,Weather,Wind,North America,None
+Scene131,,Energy,Wave,None,Quality Base Method
+Scene132,,Weather,Wind,None,Choloplethic Method
+Scene133,,Climate,Temperature,None,Quality Base Method
+Scene151,,None,Rock,Alaska,Area Method
+Scene152,,None,Animal,United States,Point Symbol Method
+Scene153,,None,Wind,North America,Choloplethic Method
+Scene161,,Weather,Wind,South America,Quality Base Method
+Scene162,,Climate,Temperature,United States,No Method
+Scene163,,Energy,Wave,United States,Line Symbol Method
+Scene171,,Water,None,None,None
+,,Geology,None,None,None
+Scene172,,Weather,None,None,None
+,,Climate,None,None,None
+Scene173,,Biodiversity,None,None,None
+,,Agriculture,None,None,None
+Scene181,,Water,None,None,None
+,,None,Wind,None,None
+Scene182,,Energy,None,None,None
+,,None,Wave,None,None
+Scene183,,Geology,None,None,None
+,,None,Rock,None,None
+Scene191,,Water,None,None,None
+,,None,None,Alaska,None
+Scene192,,Energy,None,None,None
+,,None,None,United States,None
+Scene193,,Geology,None,None,None
+,,None,None,Florida,None
+Scene201,,Water,None,None,None
+,,None,None,None,Quality Base Method
+Scene202,,Energy,None,None,None
+,,None,None,None,No Method
+Scene203,,Geology,None,None,None
+,,None,None,None,Line Symbol Method
+Scene211,,None,Wind,None,None
+,,None,Rock,None,None
+Scene212,,None,Wave,None,None
+,,None,Animal,None,None
+Scene213,,None,Rock,None,None
+,,None,Temperature,None,None
+Scene221,,None,Wind,None,None
+,,None,None,Alaska,None
+Scene222,,None,Wave,None,None
+,,None,None,United States,None
+Scene223,,None,Rock,None,None
+,,None,None,Florida,None
+Scene231,,None,Wind,None,None
+,,None,None,None,Quality Base Method
+Scene232,,None,Temperature,None,None
+,,None,None,None,No Method
+Scene233,,None,Wave,None,None
+,,None,None,None,Line Symbol Method
+Scene241,,None,None,North America,None
+,,None,None,Alaska,None
+Scene242,,None,None,Florida,None
+,,None,None,United States,None
+Scene243,,None,None,Iowa,None
+,,None,None,Florida,None
+Scene251,,None,None,Iowa,None
+,,None,None,None,Area Method
+Scene252,,None,None,Florida,None
+,,None,None,None,Point Symbol Method
+Scene253,,None,None,United States,None
+,,None,None,None,No Method
+Scene261,,None,None,None,Area Method
+,,None,None,None,Point Symbol Method
+Scene262,,None,None,None,Area Method
+,,None,None,None,Choloplethic Method
+Scene263,,None,None,None,No Method
+,,None,None,None,Line Symbol Method
+Scene271,,Weather,Wind,None,None
+,,Water,None,None,None
+Scene272,,Geology,Rock,None,None
+,,Energy,None,None,None
+Scene273,,Biodiversity,Animal,None,None
+,,Climate,None,None,None
+Scene281,,Weather,Wind,None,None
+,,None,TransitionMetal,None,None
+Scene282,,Geology,Rock,None,None
+,,None,ExtrusiveRock,None,None
+Scene283,,Biodiversity,Animal,None,None
+,,None,TransitionMetal,None,None
+Scene291,,Weather,Wind,None,None
+,,Climate,Temperature,None,None
+Scene292,,Geology,Rock,None,None
+,,Weather,Temperature,None,None
+Scene293,,Biodiversity,Animal,None,None
+,,Geology,TransitionMetal,None,None
+Scene301,,Weather,Wind,Florida,None
+,,Climate,Temperature,None,None
+Scene302,,Geology,Rock,North America,None
+,,Weather,Temperature,None,None
+Scene303,,Biodiversity,Animal,United States,None
+,,Geology,TransitionMetal,None,None
+Scene311,,Weather,Wind,Florida,No Method
+,,Climate,Temperature,None,None
+Scene312,,Geology,Rock,North America,Point Symbol Method
+,,Weather,Temperature,None,None
+Scene313,,Biodiversity,Animal,United States,Area Method
+,,Geology,TransitionMetal,None,None
+Scene321,,Weather,Wind,Florida,No Method
+,,Climate,Temperature,Iowa,None
+Scene322,,Geology,Rock,North America,Point Symbol Method
+,,Weather,Temperature,United States,None
+Scene323,,Biodiversity,Animal,United States,Area Method
+,,Geology,TransitionMetal,Florida,None
+Scene331,,Weather,Wind,Florida,No Method
+,,Climate,Temperature,None,Others
+Scene332,,Geology,Rock,North America,Point Symbol Method
+,,Weather,Temperature,None,Others
+Scene333,,Biodiversity,Animal,United States,Area Method
+,,Geology,TransitionMetal,None,Quality Base Method
+Scene341,,Weather,Wind,None,No Method
+,,Climate,Temperature,United States,None
+Scene342,,Geology,Rock,None,Point Symbol Method
+,,Weather,Temperature,United States,None
+Scene343,,Biodiversity,Animal,None,Area Method
+,,Geology,TransitionMetal,United States,None
+Scene351,,Weather,Wind,Florida,No Method
+,,Climate,Temperature,United States,Others
+Scene352,,Geology,Rock,South America,Point Symbol Method
+,,Weather,Temperature,United States,Others
+Scene353,,Biodiversity,Animal,South America,Area Method
+,,Geology,TransitionMetal,United States,Quality Base Method
+Scene406,,Weather,Wind,None,No Method
+,,Climate,Temperature,None,Others
+Scene407,,Geology,Rock,None,Point Symbol Method
+,,Weather,Temperature,None,Others
+Scene408,,Biodiversity,Animal,None,Area Method
+,,Geology,TransitionMetal,None,Quality Base Method
+Scene501,,None,Wave,None,None
+,negative,None,InternalWave,None,None
+Scene502,,None,Animal,None,None
+,negative,None,Insect,None,None
+Scene503,,None,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+Scene511,,Weather,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+Scene512,,Climate,Temperature,United States,Others
+,negative,None,PotentialTemperature,None,None
+Scene513,,None,Animal,South America,None
+,negative,None,Insect,None,None
+Scene521,,Climate,Temperature,South America,Others
+,negative,None,ElectronTemperature,None,None
+,negative,None,PotentialTemperature,None,None
+Scene522,,Weather,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+,negative,None,LocalWind,None,None
+Scene523,,Biodiversity,Animal,None,None
+,negative,None,MarineAnimal,None,None
+,negative,None,Insect,None,None
+Scene531,,None,Temperature,None,Others
+,negative,None,PotentialTemperature,None,None
+,negative,Climate,None,None,None
+Scene532,,Weather,Wind,None,None
+,negative,None,None,None,No Method
+,negative,None,LocalWind,None,None
+Scene533,,Biodiversity,Animal,North America,Area Method
+,negative,None,MarineAnimal,None,None
+,negative,None,None,Bahamas,None
+Scene541,,None,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+,,None,None,None,Point Symbol Method
+Scene542,,None,Rock,None,None
+,negative,None,IgneousRock,None,None
+,,None,None,Florida,None
+Scene543,,None,Animal,None,None
+,negative,None,Insect,None,None
+,,None,Wind,None,None
+Scene551,,None,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+,negative,None,LocalWind,None,None
+,,None,None,Florida,None
+Scene552,,None,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+,negative,None,ElectronTemperature,None,None
+,,None,Wind,None,None
+Scene553,,None,Animal,None,None
+,negative,None,Insect,None,None
+,negative,None,MarineAnimal,None,None
+,,Climate,None,Florida,None
+Scene561,,None,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+,,None,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+Scene562,,None,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+,,None,Rock,None,None
+,negative,None,None,United States,None
+Scene563,,None,Animal,None,None
+,negative,None,Insect,None,None
+,,None,TransitionMetal,None,None
+,negative,None,None,None,No Method
+Scene571,,Weather,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+,negative,None,LocalWind,None,None
+,,Water,None,Florida,None
+Scene572,,Climate,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+,negative,None,ElectronTemperature,None,None
+,,Energy,Wind,None,Quality Base Method
+Scene573,,None,Animal,None,Area Method
+,negative,None,Insect,None,None
+,negative,None,MarineAnimal,None,None
+,,None,Temperature,South America,None
+Scene581,,Climate,Temperature,United States,None
+,negative,None,PotentialTemperature,None,None
+,,Weather,Wind,None,No Method
+,negative,None,MesoscaleWind,None,None
+Scene582,,Weather,Temperature,United States,None
+,negative,None,PotentialTemperature,None,None
+,,Geology,Rock,None,Point Symbol Method
+,negative,None,None,United States,None
+Scene583,,Biodiversity,Animal,None,Area Method
+,negative,None,Insect,None,None
+,,Geology,TransitionMetal,United States,None
+,negative,None,None,None,No Method
+Scene591,,Weather,Wind,None,None
+,negative,None,MesoscaleWind,None,None
+,,Water,None,Florida,None
+Scene592,,Climate,Temperature,None,None
+,negative,None,PotentialTemperature,None,None
+,,Energy,Wind,None,Quality Base Method
+Scene593,,None,Animal,None,Area Method
+,negative,None,Insect,None,None
+,,None,Temperature,South America,None
