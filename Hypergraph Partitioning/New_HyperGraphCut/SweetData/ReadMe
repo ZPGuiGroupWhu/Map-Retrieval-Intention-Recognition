@@ -1,0 +1,6 @@
+all_concepts: [consept], 所有概念
+all_ancestors: {content:[ancestors]}, 所有上位概念
+all_hyponyms: {content,[hyponyms]}, 所有下位概念
+direct_ancestors: {content:[ancestors]}, 直接上位概念
+direct_hyponyms: {content,[hyponyms]}, 直接下位概念
+equivalent_relations: {content,[equivalent to]}, 相等概念, 包含所有content
