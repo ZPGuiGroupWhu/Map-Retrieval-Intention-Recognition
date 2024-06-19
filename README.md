@@ -6,3 +6,4 @@
   1. 基于最小描述长度(Minimum Description Length Principle)准则与随机合并(Random Merging)策略的意图识别算法**MDL-RM**。
   2. 基于引导式迭代反馈的地图检索意图更新算法。
   3. 综合用户正负偏好的地图检索意图识别
+  4. 基于超图分割的地图检索意图识别
